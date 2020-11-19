@@ -73,6 +73,7 @@ public class SampleAppTest {
     
 		options.addArguments("--headless");
 		    options.addArguments("--no-sandbox");
+			options.setExperimentalOption("useAutomationExtension", false);
          driver = new ChromeDriver(options);
 	    
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
