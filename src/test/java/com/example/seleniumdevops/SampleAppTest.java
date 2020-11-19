@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -59,26 +60,48 @@ public class SampleAppTest {
 
 
 	
+
+	
+	
 	
 	@BeforeMethod
-	public void testSetup()
-	{
-		
-	System.setProperty("webdriver.chrome.driver", "E:/selenium/chromedriver.exe");
-	driver=new ChromeDriver();
-	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	driver.get("http://3.95.171.198:9080/sampleapp/");
-	
-	}
-
-	@Test
-	public void openBrowser()
-	{
-
-	//driver.findElement(By.id("signupModalButton")).click();
-	System.out.println("We are currently on the following URL" +driver.getCurrentUrl());
-}
-	
+	  public void beforeMethod() {
+		  
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+	    ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        options.addArguments("window-size=1200x600");
+         driver = new ChromeDriver(options);
+	    
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get("http://54.165.124.193:9080/sampleapp/");
+	  }
+	  
+	  @Test
+	  public void addContact() {
+		  
+		 	driver.findElement(By.xpath("//div[@class = 'v-button v-widget']")).click();
+			driver.findElement(By.id("gwt-uid-5")).sendKeys("Arjun1");
+			driver.findElement(By.id("gwt-uid-7")).sendKeys("E2");
+			driver.findElement(By.id("gwt-uid-9")).sendKeys("80583095");
+			driver.findElement(By.id("gwt-uid-11")).sendKeys("test1@gmail.com");
+			driver.findElement(By.xpath("//div[@class = 'v-button v-widget primary v-button-primary']")).click();
+				
+		}
+	  
+	  @Test
+	  public void verifytitle() {
+		  
+	        String a = driver.getTitle();
+	        System.out.println(a);
+	        //Assert.assertEquals(a, "sampleapp");
+		    System.out.println("Test Successful."); 
+	  }
+	  
+	  @AfterMethod
+	  public void afterMethod() {  
+		  driver.close();
+	  }
 	
 	
 	
