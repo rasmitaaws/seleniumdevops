@@ -76,7 +76,7 @@ public class SampleAppTest {
          driver = new ChromeDriver(options);
 	    
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.get("http://54.165.124.193:9080/sampleapp/");
+		driver.get("http://34.238.241.157/:9080/sampleapp/");
 	  }
 	  
 	  @Test
