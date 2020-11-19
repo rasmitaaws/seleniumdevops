@@ -66,28 +66,18 @@ public class SampleAppTest {
 	
 	@BeforeMethod
 	  public void beforeMethod() {
-		  
-		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		    System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+
 	    ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        options.addArguments("window-size=1200x600");
+        
+    
+		options.addArguments("--headless");
+		    options.addArguments("--no-sandbox");
          driver = new ChromeDriver(options);
 	    
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://54.165.124.193:9080/sampleapp/");
 	  }
-	  
-	  @Test
-	  public void addContact() {
-		  
-		 	driver.findElement(By.xpath("//div[@class = 'v-button v-widget']")).click();
-			driver.findElement(By.id("gwt-uid-5")).sendKeys("Arjun1");
-			driver.findElement(By.id("gwt-uid-7")).sendKeys("E2");
-			driver.findElement(By.id("gwt-uid-9")).sendKeys("80583095");
-			driver.findElement(By.id("gwt-uid-11")).sendKeys("test1@gmail.com");
-			driver.findElement(By.xpath("//div[@class = 'v-button v-widget primary v-button-primary']")).click();
-				
-		}
 	  
 	  @Test
 	  public void verifytitle() {
